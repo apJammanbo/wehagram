@@ -1,0 +1,9 @@
+{
+  "name": "wehagram",
+  "version": "1.0.0",
+  "description": "wehagram with prisma, graphql, react, react-native, apollo",
+  "main": "index.js",
+  "repository": "https://apjammanbo@github.com/apJammanbo/wehagram.git",
+  "author": "apJammanbo <apJammanbo@gmail.com>",
+  "license": "MIT"
+}
