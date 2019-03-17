@@ -815,8 +815,8 @@ export interface UserCreateOneWithoutCommentsInput {
 export interface UserCreateWithoutCommentsInput {
   userName: String;
   email?: String;
-  firstName: String;
-  lastName: String;
+  firstName?: String;
+  lastName?: String;
   bio?: String;
   followers?: UserCreateManyWithoutFollowingInput;
   following?: UserCreateManyWithoutFollowersInput;
@@ -834,8 +834,8 @@ export interface UserCreateManyWithoutFollowingInput {
 export interface UserCreateWithoutFollowingInput {
   userName: String;
   email?: String;
-  firstName: String;
-  lastName: String;
+  firstName?: String;
+  lastName?: String;
   bio?: String;
   followers?: UserCreateManyWithoutFollowingInput;
   posts?: PostCreateManyWithoutUserInput;
@@ -884,8 +884,8 @@ export interface UserCreateOneWithoutLikesInput {
 export interface UserCreateWithoutLikesInput {
   userName: String;
   email?: String;
-  firstName: String;
-  lastName: String;
+  firstName?: String;
+  lastName?: String;
   bio?: String;
   followers?: UserCreateManyWithoutFollowingInput;
   following?: UserCreateManyWithoutFollowersInput;
@@ -903,8 +903,8 @@ export interface UserCreateManyWithoutFollowersInput {
 export interface UserCreateWithoutFollowersInput {
   userName: String;
   email?: String;
-  firstName: String;
-  lastName: String;
+  firstName?: String;
+  lastName?: String;
   bio?: String;
   following?: UserCreateManyWithoutFollowersInput;
   posts?: PostCreateManyWithoutUserInput;
@@ -944,8 +944,8 @@ export interface UserCreateOneWithoutPostsInput {
 export interface UserCreateWithoutPostsInput {
   userName: String;
   email?: String;
-  firstName: String;
-  lastName: String;
+  firstName?: String;
+  lastName?: String;
   bio?: String;
   followers?: UserCreateManyWithoutFollowingInput;
   following?: UserCreateManyWithoutFollowersInput;
@@ -1008,8 +1008,8 @@ export interface UserCreateOneInput {
 export interface UserCreateInput {
   userName: String;
   email?: String;
-  firstName: String;
-  lastName: String;
+  firstName?: String;
+  lastName?: String;
   bio?: String;
   followers?: UserCreateManyWithoutFollowingInput;
   following?: UserCreateManyWithoutFollowersInput;
@@ -1962,8 +1962,8 @@ export interface UserCreateManyWithoutRoomsInput {
 export interface UserCreateWithoutRoomsInput {
   userName: String;
   email?: String;
-  firstName: String;
-  lastName: String;
+  firstName?: String;
+  lastName?: String;
   bio?: String;
   followers?: UserCreateManyWithoutFollowingInput;
   following?: UserCreateManyWithoutFollowersInput;
@@ -2206,8 +2206,8 @@ export interface User {
   id: ID_Output;
   userName: String;
   email?: String;
-  firstName: String;
-  lastName: String;
+  firstName?: String;
+  lastName?: String;
   bio?: String;
   loginSecret?: String;
 }
@@ -3279,8 +3279,8 @@ export interface UserPreviousValues {
   id: ID_Output;
   userName: String;
   email?: String;
-  firstName: String;
-  lastName: String;
+  firstName?: String;
+  lastName?: String;
   bio?: String;
   loginSecret?: String;
 }

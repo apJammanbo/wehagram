@@ -2,8 +2,8 @@ type User {
   id: ID!
   userName: String!
   email: String
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
   bio: String
   followers: [User!]!
   following: [User!]!

@@ -1427,8 +1427,8 @@ type User {
   id: ID!
   userName: String!
   email: String
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
   bio: String
   followers(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
   following(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
@@ -1448,8 +1448,8 @@ type UserConnection {
 input UserCreateInput {
   userName: String!
   email: String
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
   bio: String
   followers: UserCreateManyWithoutFollowingInput
   following: UserCreateManyWithoutFollowersInput
@@ -1498,8 +1498,8 @@ input UserCreateOneWithoutPostsInput {
 input UserCreateWithoutCommentsInput {
   userName: String!
   email: String
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
   bio: String
   followers: UserCreateManyWithoutFollowingInput
   following: UserCreateManyWithoutFollowersInput
@@ -1512,8 +1512,8 @@ input UserCreateWithoutCommentsInput {
 input UserCreateWithoutFollowersInput {
   userName: String!
   email: String
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
   bio: String
   following: UserCreateManyWithoutFollowersInput
   posts: PostCreateManyWithoutUserInput
@@ -1526,8 +1526,8 @@ input UserCreateWithoutFollowersInput {
 input UserCreateWithoutFollowingInput {
   userName: String!
   email: String
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
   bio: String
   followers: UserCreateManyWithoutFollowingInput
   posts: PostCreateManyWithoutUserInput
@@ -1540,8 +1540,8 @@ input UserCreateWithoutFollowingInput {
 input UserCreateWithoutLikesInput {
   userName: String!
   email: String
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
   bio: String
   followers: UserCreateManyWithoutFollowingInput
   following: UserCreateManyWithoutFollowersInput
@@ -1554,8 +1554,8 @@ input UserCreateWithoutLikesInput {
 input UserCreateWithoutPostsInput {
   userName: String!
   email: String
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
   bio: String
   followers: UserCreateManyWithoutFollowingInput
   following: UserCreateManyWithoutFollowersInput
@@ -1568,8 +1568,8 @@ input UserCreateWithoutPostsInput {
 input UserCreateWithoutRoomsInput {
   userName: String!
   email: String
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
   bio: String
   followers: UserCreateManyWithoutFollowingInput
   following: UserCreateManyWithoutFollowersInput
@@ -1609,8 +1609,8 @@ type UserPreviousValues {
   id: ID!
   userName: String!
   email: String
-  firstName: String!
-  lastName: String!
+  firstName: String
+  lastName: String
   bio: String
   loginSecret: String
 }
