@@ -368,6 +368,8 @@ export type UserOrderByInput =
   | "lastName_DESC"
   | "bio_ASC"
   | "bio_DESC"
+  | "loginSecret_ASC"
+  | "loginSecret_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -540,6 +542,20 @@ export interface UserWhereInput {
   rooms_every?: RoomWhereInput;
   rooms_some?: RoomWhereInput;
   rooms_none?: RoomWhereInput;
+  loginSecret?: String;
+  loginSecret_not?: String;
+  loginSecret_in?: String[] | String;
+  loginSecret_not_in?: String[] | String;
+  loginSecret_lt?: String;
+  loginSecret_lte?: String;
+  loginSecret_gt?: String;
+  loginSecret_gte?: String;
+  loginSecret_contains?: String;
+  loginSecret_not_contains?: String;
+  loginSecret_starts_with?: String;
+  loginSecret_not_starts_with?: String;
+  loginSecret_ends_with?: String;
+  loginSecret_not_ends_with?: String;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
   NOT?: UserWhereInput[] | UserWhereInput;
@@ -807,6 +823,7 @@ export interface UserCreateWithoutCommentsInput {
   posts?: PostCreateManyWithoutUserInput;
   likes?: LikeCreateManyWithoutUserInput;
   rooms?: RoomCreateManyWithoutParticipantsInput;
+  loginSecret?: String;
 }
 
 export interface UserCreateManyWithoutFollowingInput {
@@ -825,6 +842,7 @@ export interface UserCreateWithoutFollowingInput {
   likes?: LikeCreateManyWithoutUserInput;
   comments?: CommentCreateManyWithoutUserInput;
   rooms?: RoomCreateManyWithoutParticipantsInput;
+  loginSecret?: String;
 }
 
 export interface PostCreateManyWithoutUserInput {
@@ -874,6 +892,7 @@ export interface UserCreateWithoutLikesInput {
   posts?: PostCreateManyWithoutUserInput;
   comments?: CommentCreateManyWithoutUserInput;
   rooms?: RoomCreateManyWithoutParticipantsInput;
+  loginSecret?: String;
 }
 
 export interface UserCreateManyWithoutFollowersInput {
@@ -892,6 +911,7 @@ export interface UserCreateWithoutFollowersInput {
   likes?: LikeCreateManyWithoutUserInput;
   comments?: CommentCreateManyWithoutUserInput;
   rooms?: RoomCreateManyWithoutParticipantsInput;
+  loginSecret?: String;
 }
 
 export interface LikeCreateManyWithoutUserInput {
@@ -932,6 +952,7 @@ export interface UserCreateWithoutPostsInput {
   likes?: LikeCreateManyWithoutUserInput;
   comments?: CommentCreateManyWithoutUserInput;
   rooms?: RoomCreateManyWithoutParticipantsInput;
+  loginSecret?: String;
 }
 
 export interface CommentCreateManyWithoutUserInput {
@@ -996,6 +1017,7 @@ export interface UserCreateInput {
   likes?: LikeCreateManyWithoutUserInput;
   comments?: CommentCreateManyWithoutUserInput;
   rooms?: RoomCreateManyWithoutParticipantsInput;
+  loginSecret?: String;
 }
 
 export interface CommentCreateManyWithoutPostInput {
@@ -1032,6 +1054,7 @@ export interface UserUpdateWithoutCommentsDataInput {
   posts?: PostUpdateManyWithoutUserInput;
   likes?: LikeUpdateManyWithoutUserInput;
   rooms?: RoomUpdateManyWithoutParticipantsInput;
+  loginSecret?: String;
 }
 
 export interface UserUpdateManyWithoutFollowingInput {
@@ -1068,6 +1091,7 @@ export interface UserUpdateWithoutFollowingDataInput {
   likes?: LikeUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
   rooms?: RoomUpdateManyWithoutParticipantsInput;
+  loginSecret?: String;
 }
 
 export interface PostUpdateManyWithoutUserInput {
@@ -1219,6 +1243,7 @@ export interface UserUpdateWithoutLikesDataInput {
   posts?: PostUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
   rooms?: RoomUpdateManyWithoutParticipantsInput;
+  loginSecret?: String;
 }
 
 export interface UserUpdateManyWithoutFollowersInput {
@@ -1255,6 +1280,7 @@ export interface UserUpdateWithoutFollowersDataInput {
   likes?: LikeUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
   rooms?: RoomUpdateManyWithoutParticipantsInput;
+  loginSecret?: String;
 }
 
 export interface LikeUpdateManyWithoutUserInput {
@@ -1314,6 +1340,7 @@ export interface UserUpdateWithoutPostsDataInput {
   likes?: LikeUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
   rooms?: RoomUpdateManyWithoutParticipantsInput;
+  loginSecret?: String;
 }
 
 export interface CommentUpdateManyWithoutUserInput {
@@ -1487,6 +1514,7 @@ export interface UserUpdateDataInput {
   likes?: LikeUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
   rooms?: RoomUpdateManyWithoutParticipantsInput;
+  loginSecret?: String;
 }
 
 export interface UserUpsertNestedInput {
@@ -1730,6 +1758,20 @@ export interface UserScalarWhereInput {
   bio_not_starts_with?: String;
   bio_ends_with?: String;
   bio_not_ends_with?: String;
+  loginSecret?: String;
+  loginSecret_not?: String;
+  loginSecret_in?: String[] | String;
+  loginSecret_not_in?: String[] | String;
+  loginSecret_lt?: String;
+  loginSecret_lte?: String;
+  loginSecret_gt?: String;
+  loginSecret_gte?: String;
+  loginSecret_contains?: String;
+  loginSecret_not_contains?: String;
+  loginSecret_starts_with?: String;
+  loginSecret_not_starts_with?: String;
+  loginSecret_ends_with?: String;
+  loginSecret_not_ends_with?: String;
   AND?: UserScalarWhereInput[] | UserScalarWhereInput;
   OR?: UserScalarWhereInput[] | UserScalarWhereInput;
   NOT?: UserScalarWhereInput[] | UserScalarWhereInput;
@@ -1746,6 +1788,7 @@ export interface UserUpdateManyDataInput {
   firstName?: String;
   lastName?: String;
   bio?: String;
+  loginSecret?: String;
 }
 
 export interface UserUpsertWithoutLikesInput {
@@ -1927,6 +1970,7 @@ export interface UserCreateWithoutRoomsInput {
   posts?: PostCreateManyWithoutUserInput;
   likes?: LikeCreateManyWithoutUserInput;
   comments?: CommentCreateManyWithoutUserInput;
+  loginSecret?: String;
 }
 
 export interface MessageUpdateInput {
@@ -1981,6 +2025,7 @@ export interface UserUpdateWithoutRoomsDataInput {
   posts?: PostUpdateManyWithoutUserInput;
   likes?: LikeUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
+  loginSecret?: String;
 }
 
 export interface UserUpsertWithWhereUniqueWithoutRoomsInput {
@@ -2043,6 +2088,7 @@ export interface UserUpdateInput {
   likes?: LikeUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
   rooms?: RoomUpdateManyWithoutParticipantsInput;
+  loginSecret?: String;
 }
 
 export interface UserUpdateManyMutationInput {
@@ -2051,6 +2097,7 @@ export interface UserUpdateManyMutationInput {
   firstName?: String;
   lastName?: String;
   bio?: String;
+  loginSecret?: String;
 }
 
 export interface CommentSubscriptionWhereInput {
@@ -2162,6 +2209,7 @@ export interface User {
   firstName: String;
   lastName: String;
   bio?: String;
+  loginSecret?: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
@@ -2237,6 +2285,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
       last?: Int;
     }
   ) => T;
+  loginSecret: () => Promise<String>;
 }
 
 export interface UserSubscription
@@ -2314,6 +2363,7 @@ export interface UserSubscription
       last?: Int;
     }
   ) => T;
+  loginSecret: () => Promise<AsyncIterator<String>>;
 }
 
 export interface Post {
@@ -3232,6 +3282,7 @@ export interface UserPreviousValues {
   firstName: String;
   lastName: String;
   bio?: String;
+  loginSecret?: String;
 }
 
 export interface UserPreviousValuesPromise
@@ -3243,6 +3294,7 @@ export interface UserPreviousValuesPromise
   firstName: () => Promise<String>;
   lastName: () => Promise<String>;
   bio: () => Promise<String>;
+  loginSecret: () => Promise<String>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -3254,6 +3306,7 @@ export interface UserPreviousValuesSubscription
   firstName: () => Promise<AsyncIterator<String>>;
   lastName: () => Promise<AsyncIterator<String>>;
   bio: () => Promise<AsyncIterator<String>>;
+  loginSecret: () => Promise<AsyncIterator<String>>;
 }
 
 /*
