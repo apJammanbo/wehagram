@@ -3,7 +3,8 @@
 ## User Stories
 
 - [x] Create account
-- [ ] Login
+- [ ] Request Secret
+- [ ] Confirm Secret
 - [ ] Like / Unlike a photo
 - [ ] Commnet on a photo
 - [ ] Search by user
