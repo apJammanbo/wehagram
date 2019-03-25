@@ -1,7 +1,7 @@
-// env 파일 읽기
 import { GraphQLServer } from "graphql-yoga";
 import logger from "morgan";
 import schema from "./shcema";
+import { sendSecretMail } from "./util";
 
 /**
  * GraphQLServer 생성

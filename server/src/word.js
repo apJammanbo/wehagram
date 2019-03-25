@@ -498,7 +498,7 @@ export const adjectives = [
   "lame",
   "flimsy",
   "hilarious",
-  "plastic"
+  "plasti"
 ];
 
 export const nouns = [

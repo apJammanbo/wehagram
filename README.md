@@ -4,7 +4,7 @@
 
 - [x] Create account
 - [ ] Request Secret
-- [ ] Confirm Secret
+- [ ] Confirm Secret(Login)
 - [ ] Like / Unlike a photo
 - [ ] Commnet on a photo
 - [ ] Search by user
