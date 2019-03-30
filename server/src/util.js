@@ -1,8 +1,7 @@
-import dotenv from "dotenv";
-dotenv.config();
 import { adjectives, nouns } from "./word";
 import nodemailer from "nodemailer";
 import sgTransport from "nodemailer-sendgrid-transport";
+import jwt from "jsonwebtoken";
 
 /**
  * 암호 단어를 생성한다.
@@ -35,7 +34,12 @@ export const sendSecretMail = (address, secret) => {
     from: "apjammanbo@gmail.com",
     to: address,
     subject: "🔒Login Secret for wehagram🔒",
-    html: `Hello Your login secret is ${secret}. <br/>Copy Paste on the app/web to loggin `
+    html: `Hello Your login secret is <strong>${secret}</strong>. <br/>Copy Paste on the app/web to loggin `
   };
   return sendMail(email);
 };
+
+/**
+ *  Create JWT
+ */
+export const generateToken = id => jwt.sign({ id }, process.env.JWT_SECRET);

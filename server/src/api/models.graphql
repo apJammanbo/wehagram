@@ -19,9 +19,9 @@ type Post {
   user: User!
   location: String
   caption: String!
-  files: [File!]!
-  likes: [Like!]!
-  comments: [Comment!]!
+  files: [File]!
+  likes: [Like]!
+  comments: [Comment]!
 }
 
 type Like {
