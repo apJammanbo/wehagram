@@ -524,12 +524,12 @@ export interface UserWhereInput {
   bio_not_starts_with?: String;
   bio_ends_with?: String;
   bio_not_ends_with?: String;
-  followers_every?: UserWhereInput;
-  followers_some?: UserWhereInput;
-  followers_none?: UserWhereInput;
   following_every?: UserWhereInput;
   following_some?: UserWhereInput;
   following_none?: UserWhereInput;
+  followers_every?: UserWhereInput;
+  followers_some?: UserWhereInput;
+  followers_none?: UserWhereInput;
   posts_every?: PostWhereInput;
   posts_some?: PostWhereInput;
   posts_none?: PostWhereInput;
@@ -576,7 +576,6 @@ export interface PostWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
-  user?: UserWhereInput;
   location?: String;
   location_not?: String;
   location_in?: String[] | String;
@@ -605,6 +604,7 @@ export interface PostWhereInput {
   caption_not_starts_with?: String;
   caption_ends_with?: String;
   caption_not_ends_with?: String;
+  user?: UserWhereInput;
   files_every?: FileWhereInput;
   files_some?: FileWhereInput;
   files_none?: FileWhereInput;
@@ -803,8 +803,8 @@ export type UserWhereUniqueInput = AtLeastOne<{
 
 export interface CommentCreateInput {
   text: String;
-  user: UserCreateOneWithoutCommentsInput;
-  post: PostCreateOneWithoutCommentsInput;
+  user?: UserCreateOneWithoutCommentsInput;
+  post?: PostCreateOneWithoutCommentsInput;
 }
 
 export interface UserCreateOneWithoutCommentsInput {
@@ -814,30 +814,30 @@ export interface UserCreateOneWithoutCommentsInput {
 
 export interface UserCreateWithoutCommentsInput {
   userName: String;
-  email?: String;
+  email: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
-  followers?: UserCreateManyWithoutFollowingInput;
   following?: UserCreateManyWithoutFollowersInput;
+  followers?: UserCreateManyWithoutFollowingInput;
   posts?: PostCreateManyWithoutUserInput;
   likes?: LikeCreateManyWithoutUserInput;
   rooms?: RoomCreateManyWithoutParticipantsInput;
   loginSecret?: String;
 }
 
-export interface UserCreateManyWithoutFollowingInput {
-  create?: UserCreateWithoutFollowingInput[] | UserCreateWithoutFollowingInput;
+export interface UserCreateManyWithoutFollowersInput {
+  create?: UserCreateWithoutFollowersInput[] | UserCreateWithoutFollowersInput;
   connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
 }
 
-export interface UserCreateWithoutFollowingInput {
+export interface UserCreateWithoutFollowersInput {
   userName: String;
-  email?: String;
+  email: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
-  followers?: UserCreateManyWithoutFollowingInput;
+  following?: UserCreateManyWithoutFollowersInput;
   posts?: PostCreateManyWithoutUserInput;
   likes?: LikeCreateManyWithoutUserInput;
   comments?: CommentCreateManyWithoutUserInput;
@@ -873,7 +873,7 @@ export interface LikeCreateManyWithoutPostInput {
 }
 
 export interface LikeCreateWithoutPostInput {
-  user: UserCreateOneWithoutLikesInput;
+  user?: UserCreateOneWithoutLikesInput;
 }
 
 export interface UserCreateOneWithoutLikesInput {
@@ -883,30 +883,30 @@ export interface UserCreateOneWithoutLikesInput {
 
 export interface UserCreateWithoutLikesInput {
   userName: String;
-  email?: String;
+  email: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
-  followers?: UserCreateManyWithoutFollowingInput;
   following?: UserCreateManyWithoutFollowersInput;
+  followers?: UserCreateManyWithoutFollowingInput;
   posts?: PostCreateManyWithoutUserInput;
   comments?: CommentCreateManyWithoutUserInput;
   rooms?: RoomCreateManyWithoutParticipantsInput;
   loginSecret?: String;
 }
 
-export interface UserCreateManyWithoutFollowersInput {
-  create?: UserCreateWithoutFollowersInput[] | UserCreateWithoutFollowersInput;
+export interface UserCreateManyWithoutFollowingInput {
+  create?: UserCreateWithoutFollowingInput[] | UserCreateWithoutFollowingInput;
   connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
 }
 
-export interface UserCreateWithoutFollowersInput {
+export interface UserCreateWithoutFollowingInput {
   userName: String;
-  email?: String;
+  email: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
-  following?: UserCreateManyWithoutFollowersInput;
+  followers?: UserCreateManyWithoutFollowingInput;
   posts?: PostCreateManyWithoutUserInput;
   likes?: LikeCreateManyWithoutUserInput;
   comments?: CommentCreateManyWithoutUserInput;
@@ -920,7 +920,7 @@ export interface LikeCreateManyWithoutUserInput {
 }
 
 export interface LikeCreateWithoutUserInput {
-  post: PostCreateOneWithoutLikesInput;
+  post?: PostCreateOneWithoutLikesInput;
 }
 
 export interface PostCreateOneWithoutLikesInput {
@@ -929,9 +929,9 @@ export interface PostCreateOneWithoutLikesInput {
 }
 
 export interface PostCreateWithoutLikesInput {
-  user: UserCreateOneWithoutPostsInput;
   location?: String;
   caption: String;
+  user?: UserCreateOneWithoutPostsInput;
   files?: FileCreateManyWithoutPostInput;
   comments?: CommentCreateManyWithoutPostInput;
 }
@@ -943,12 +943,12 @@ export interface UserCreateOneWithoutPostsInput {
 
 export interface UserCreateWithoutPostsInput {
   userName: String;
-  email?: String;
+  email: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
-  followers?: UserCreateManyWithoutFollowingInput;
   following?: UserCreateManyWithoutFollowersInput;
+  followers?: UserCreateManyWithoutFollowingInput;
   likes?: LikeCreateManyWithoutUserInput;
   comments?: CommentCreateManyWithoutUserInput;
   rooms?: RoomCreateManyWithoutParticipantsInput;
@@ -962,7 +962,7 @@ export interface CommentCreateManyWithoutUserInput {
 
 export interface CommentCreateWithoutUserInput {
   text: String;
-  post: PostCreateOneWithoutCommentsInput;
+  post?: PostCreateOneWithoutCommentsInput;
 }
 
 export interface PostCreateOneWithoutCommentsInput {
@@ -971,9 +971,9 @@ export interface PostCreateOneWithoutCommentsInput {
 }
 
 export interface PostCreateWithoutCommentsInput {
-  user: UserCreateOneWithoutPostsInput;
   location?: String;
   caption: String;
+  user?: UserCreateOneWithoutPostsInput;
   files?: FileCreateManyWithoutPostInput;
   likes?: LikeCreateManyWithoutPostInput;
 }
@@ -1007,12 +1007,12 @@ export interface UserCreateOneInput {
 
 export interface UserCreateInput {
   userName: String;
-  email?: String;
+  email: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
-  followers?: UserCreateManyWithoutFollowingInput;
   following?: UserCreateManyWithoutFollowersInput;
+  followers?: UserCreateManyWithoutFollowingInput;
   posts?: PostCreateManyWithoutUserInput;
   likes?: LikeCreateManyWithoutUserInput;
   comments?: CommentCreateManyWithoutUserInput;
@@ -1027,19 +1027,21 @@ export interface CommentCreateManyWithoutPostInput {
 
 export interface CommentCreateWithoutPostInput {
   text: String;
-  user: UserCreateOneWithoutCommentsInput;
+  user?: UserCreateOneWithoutCommentsInput;
 }
 
 export interface CommentUpdateInput {
   text?: String;
-  user?: UserUpdateOneRequiredWithoutCommentsInput;
-  post?: PostUpdateOneRequiredWithoutCommentsInput;
+  user?: UserUpdateOneWithoutCommentsInput;
+  post?: PostUpdateOneWithoutCommentsInput;
 }
 
-export interface UserUpdateOneRequiredWithoutCommentsInput {
+export interface UserUpdateOneWithoutCommentsInput {
   create?: UserCreateWithoutCommentsInput;
   update?: UserUpdateWithoutCommentsDataInput;
   upsert?: UserUpsertWithoutCommentsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
   connect?: UserWhereUniqueInput;
 }
 
@@ -1049,44 +1051,44 @@ export interface UserUpdateWithoutCommentsDataInput {
   firstName?: String;
   lastName?: String;
   bio?: String;
-  followers?: UserUpdateManyWithoutFollowingInput;
   following?: UserUpdateManyWithoutFollowersInput;
+  followers?: UserUpdateManyWithoutFollowingInput;
   posts?: PostUpdateManyWithoutUserInput;
   likes?: LikeUpdateManyWithoutUserInput;
   rooms?: RoomUpdateManyWithoutParticipantsInput;
   loginSecret?: String;
 }
 
-export interface UserUpdateManyWithoutFollowingInput {
-  create?: UserCreateWithoutFollowingInput[] | UserCreateWithoutFollowingInput;
+export interface UserUpdateManyWithoutFollowersInput {
+  create?: UserCreateWithoutFollowersInput[] | UserCreateWithoutFollowersInput;
   delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
   connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
   set?: UserWhereUniqueInput[] | UserWhereUniqueInput;
   disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
   update?:
-    | UserUpdateWithWhereUniqueWithoutFollowingInput[]
-    | UserUpdateWithWhereUniqueWithoutFollowingInput;
+    | UserUpdateWithWhereUniqueWithoutFollowersInput[]
+    | UserUpdateWithWhereUniqueWithoutFollowersInput;
   upsert?:
-    | UserUpsertWithWhereUniqueWithoutFollowingInput[]
-    | UserUpsertWithWhereUniqueWithoutFollowingInput;
+    | UserUpsertWithWhereUniqueWithoutFollowersInput[]
+    | UserUpsertWithWhereUniqueWithoutFollowersInput;
   deleteMany?: UserScalarWhereInput[] | UserScalarWhereInput;
   updateMany?:
     | UserUpdateManyWithWhereNestedInput[]
     | UserUpdateManyWithWhereNestedInput;
 }
 
-export interface UserUpdateWithWhereUniqueWithoutFollowingInput {
+export interface UserUpdateWithWhereUniqueWithoutFollowersInput {
   where: UserWhereUniqueInput;
-  data: UserUpdateWithoutFollowingDataInput;
+  data: UserUpdateWithoutFollowersDataInput;
 }
 
-export interface UserUpdateWithoutFollowingDataInput {
+export interface UserUpdateWithoutFollowersDataInput {
   userName?: String;
   email?: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
-  followers?: UserUpdateManyWithoutFollowingInput;
+  following?: UserUpdateManyWithoutFollowersInput;
   posts?: PostUpdateManyWithoutUserInput;
   likes?: LikeUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
@@ -1222,13 +1224,15 @@ export interface LikeUpdateWithWhereUniqueWithoutPostInput {
 }
 
 export interface LikeUpdateWithoutPostDataInput {
-  user?: UserUpdateOneRequiredWithoutLikesInput;
+  user?: UserUpdateOneWithoutLikesInput;
 }
 
-export interface UserUpdateOneRequiredWithoutLikesInput {
+export interface UserUpdateOneWithoutLikesInput {
   create?: UserCreateWithoutLikesInput;
   update?: UserUpdateWithoutLikesDataInput;
   upsert?: UserUpsertWithoutLikesInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
   connect?: UserWhereUniqueInput;
 }
 
@@ -1238,44 +1242,44 @@ export interface UserUpdateWithoutLikesDataInput {
   firstName?: String;
   lastName?: String;
   bio?: String;
-  followers?: UserUpdateManyWithoutFollowingInput;
   following?: UserUpdateManyWithoutFollowersInput;
+  followers?: UserUpdateManyWithoutFollowingInput;
   posts?: PostUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
   rooms?: RoomUpdateManyWithoutParticipantsInput;
   loginSecret?: String;
 }
 
-export interface UserUpdateManyWithoutFollowersInput {
-  create?: UserCreateWithoutFollowersInput[] | UserCreateWithoutFollowersInput;
+export interface UserUpdateManyWithoutFollowingInput {
+  create?: UserCreateWithoutFollowingInput[] | UserCreateWithoutFollowingInput;
   delete?: UserWhereUniqueInput[] | UserWhereUniqueInput;
   connect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
   set?: UserWhereUniqueInput[] | UserWhereUniqueInput;
   disconnect?: UserWhereUniqueInput[] | UserWhereUniqueInput;
   update?:
-    | UserUpdateWithWhereUniqueWithoutFollowersInput[]
-    | UserUpdateWithWhereUniqueWithoutFollowersInput;
+    | UserUpdateWithWhereUniqueWithoutFollowingInput[]
+    | UserUpdateWithWhereUniqueWithoutFollowingInput;
   upsert?:
-    | UserUpsertWithWhereUniqueWithoutFollowersInput[]
-    | UserUpsertWithWhereUniqueWithoutFollowersInput;
+    | UserUpsertWithWhereUniqueWithoutFollowingInput[]
+    | UserUpsertWithWhereUniqueWithoutFollowingInput;
   deleteMany?: UserScalarWhereInput[] | UserScalarWhereInput;
   updateMany?:
     | UserUpdateManyWithWhereNestedInput[]
     | UserUpdateManyWithWhereNestedInput;
 }
 
-export interface UserUpdateWithWhereUniqueWithoutFollowersInput {
+export interface UserUpdateWithWhereUniqueWithoutFollowingInput {
   where: UserWhereUniqueInput;
-  data: UserUpdateWithoutFollowersDataInput;
+  data: UserUpdateWithoutFollowingDataInput;
 }
 
-export interface UserUpdateWithoutFollowersDataInput {
+export interface UserUpdateWithoutFollowingDataInput {
   userName?: String;
   email?: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
-  following?: UserUpdateManyWithoutFollowersInput;
+  followers?: UserUpdateManyWithoutFollowingInput;
   posts?: PostUpdateManyWithoutUserInput;
   likes?: LikeUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
@@ -1304,28 +1308,32 @@ export interface LikeUpdateWithWhereUniqueWithoutUserInput {
 }
 
 export interface LikeUpdateWithoutUserDataInput {
-  post?: PostUpdateOneRequiredWithoutLikesInput;
+  post?: PostUpdateOneWithoutLikesInput;
 }
 
-export interface PostUpdateOneRequiredWithoutLikesInput {
+export interface PostUpdateOneWithoutLikesInput {
   create?: PostCreateWithoutLikesInput;
   update?: PostUpdateWithoutLikesDataInput;
   upsert?: PostUpsertWithoutLikesInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
   connect?: PostWhereUniqueInput;
 }
 
 export interface PostUpdateWithoutLikesDataInput {
-  user?: UserUpdateOneRequiredWithoutPostsInput;
   location?: String;
   caption?: String;
+  user?: UserUpdateOneWithoutPostsInput;
   files?: FileUpdateManyWithoutPostInput;
   comments?: CommentUpdateManyWithoutPostInput;
 }
 
-export interface UserUpdateOneRequiredWithoutPostsInput {
+export interface UserUpdateOneWithoutPostsInput {
   create?: UserCreateWithoutPostsInput;
   update?: UserUpdateWithoutPostsDataInput;
   upsert?: UserUpsertWithoutPostsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
   connect?: UserWhereUniqueInput;
 }
 
@@ -1335,8 +1343,8 @@ export interface UserUpdateWithoutPostsDataInput {
   firstName?: String;
   lastName?: String;
   bio?: String;
-  followers?: UserUpdateManyWithoutFollowingInput;
   following?: UserUpdateManyWithoutFollowersInput;
+  followers?: UserUpdateManyWithoutFollowingInput;
   likes?: LikeUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
   rooms?: RoomUpdateManyWithoutParticipantsInput;
@@ -1368,20 +1376,22 @@ export interface CommentUpdateWithWhereUniqueWithoutUserInput {
 
 export interface CommentUpdateWithoutUserDataInput {
   text?: String;
-  post?: PostUpdateOneRequiredWithoutCommentsInput;
+  post?: PostUpdateOneWithoutCommentsInput;
 }
 
-export interface PostUpdateOneRequiredWithoutCommentsInput {
+export interface PostUpdateOneWithoutCommentsInput {
   create?: PostCreateWithoutCommentsInput;
   update?: PostUpdateWithoutCommentsDataInput;
   upsert?: PostUpsertWithoutCommentsInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
   connect?: PostWhereUniqueInput;
 }
 
 export interface PostUpdateWithoutCommentsDataInput {
-  user?: UserUpdateOneRequiredWithoutPostsInput;
   location?: String;
   caption?: String;
+  user?: UserUpdateOneWithoutPostsInput;
   files?: FileUpdateManyWithoutPostInput;
   likes?: LikeUpdateManyWithoutPostInput;
 }
@@ -1508,8 +1518,8 @@ export interface UserUpdateDataInput {
   firstName?: String;
   lastName?: String;
   bio?: String;
-  followers?: UserUpdateManyWithoutFollowingInput;
   following?: UserUpdateManyWithoutFollowersInput;
+  followers?: UserUpdateManyWithoutFollowingInput;
   posts?: PostUpdateManyWithoutUserInput;
   likes?: LikeUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
@@ -1627,7 +1637,7 @@ export interface CommentUpdateWithWhereUniqueWithoutPostInput {
 
 export interface CommentUpdateWithoutPostDataInput {
   text?: String;
-  user?: UserUpdateOneRequiredWithoutCommentsInput;
+  user?: UserUpdateOneWithoutCommentsInput;
 }
 
 export interface CommentUpsertWithWhereUniqueWithoutPostInput {
@@ -1667,10 +1677,10 @@ export interface LikeScalarWhereInput {
   NOT?: LikeScalarWhereInput[] | LikeScalarWhereInput;
 }
 
-export interface UserUpsertWithWhereUniqueWithoutFollowersInput {
+export interface UserUpsertWithWhereUniqueWithoutFollowingInput {
   where: UserWhereUniqueInput;
-  update: UserUpdateWithoutFollowersDataInput;
-  create: UserCreateWithoutFollowersInput;
+  update: UserUpdateWithoutFollowingDataInput;
+  create: UserCreateWithoutFollowingInput;
 }
 
 export interface UserScalarWhereInput {
@@ -1866,10 +1876,10 @@ export interface PostUpdateManyDataInput {
   caption?: String;
 }
 
-export interface UserUpsertWithWhereUniqueWithoutFollowingInput {
+export interface UserUpsertWithWhereUniqueWithoutFollowersInput {
   where: UserWhereUniqueInput;
-  update: UserUpdateWithoutFollowingDataInput;
-  create: UserCreateWithoutFollowingInput;
+  update: UserUpdateWithoutFollowersDataInput;
+  create: UserCreateWithoutFollowersInput;
 }
 
 export interface UserUpsertWithoutCommentsInput {
@@ -1883,7 +1893,7 @@ export interface CommentUpdateManyMutationInput {
 
 export interface FileCreateInput {
   url: String;
-  post: PostCreateOneWithoutFilesInput;
+  post?: PostCreateOneWithoutFilesInput;
 }
 
 export interface PostCreateOneWithoutFilesInput {
@@ -1892,29 +1902,31 @@ export interface PostCreateOneWithoutFilesInput {
 }
 
 export interface PostCreateWithoutFilesInput {
-  user: UserCreateOneWithoutPostsInput;
   location?: String;
   caption: String;
+  user?: UserCreateOneWithoutPostsInput;
   likes?: LikeCreateManyWithoutPostInput;
   comments?: CommentCreateManyWithoutPostInput;
 }
 
 export interface FileUpdateInput {
   url?: String;
-  post?: PostUpdateOneRequiredWithoutFilesInput;
+  post?: PostUpdateOneWithoutFilesInput;
 }
 
-export interface PostUpdateOneRequiredWithoutFilesInput {
+export interface PostUpdateOneWithoutFilesInput {
   create?: PostCreateWithoutFilesInput;
   update?: PostUpdateWithoutFilesDataInput;
   upsert?: PostUpsertWithoutFilesInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
   connect?: PostWhereUniqueInput;
 }
 
 export interface PostUpdateWithoutFilesDataInput {
-  user?: UserUpdateOneRequiredWithoutPostsInput;
   location?: String;
   caption?: String;
+  user?: UserUpdateOneWithoutPostsInput;
   likes?: LikeUpdateManyWithoutPostInput;
   comments?: CommentUpdateManyWithoutPostInput;
 }
@@ -1929,13 +1941,13 @@ export interface FileUpdateManyMutationInput {
 }
 
 export interface LikeCreateInput {
-  user: UserCreateOneWithoutLikesInput;
-  post: PostCreateOneWithoutLikesInput;
+  user?: UserCreateOneWithoutLikesInput;
+  post?: PostCreateOneWithoutLikesInput;
 }
 
 export interface LikeUpdateInput {
-  user?: UserUpdateOneRequiredWithoutLikesInput;
-  post?: PostUpdateOneRequiredWithoutLikesInput;
+  user?: UserUpdateOneWithoutLikesInput;
+  post?: PostUpdateOneWithoutLikesInput;
 }
 
 export interface MessageCreateInput {
@@ -1961,12 +1973,12 @@ export interface UserCreateManyWithoutRoomsInput {
 
 export interface UserCreateWithoutRoomsInput {
   userName: String;
-  email?: String;
+  email: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
-  followers?: UserCreateManyWithoutFollowingInput;
   following?: UserCreateManyWithoutFollowersInput;
+  followers?: UserCreateManyWithoutFollowingInput;
   posts?: PostCreateManyWithoutUserInput;
   likes?: LikeCreateManyWithoutUserInput;
   comments?: CommentCreateManyWithoutUserInput;
@@ -2020,8 +2032,8 @@ export interface UserUpdateWithoutRoomsDataInput {
   firstName?: String;
   lastName?: String;
   bio?: String;
-  followers?: UserUpdateManyWithoutFollowingInput;
   following?: UserUpdateManyWithoutFollowersInput;
+  followers?: UserUpdateManyWithoutFollowingInput;
   posts?: PostUpdateManyWithoutUserInput;
   likes?: LikeUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
@@ -2044,18 +2056,18 @@ export interface MessageUpdateManyMutationInput {
 }
 
 export interface PostCreateInput {
-  user: UserCreateOneWithoutPostsInput;
   location?: String;
   caption: String;
+  user?: UserCreateOneWithoutPostsInput;
   files?: FileCreateManyWithoutPostInput;
   likes?: LikeCreateManyWithoutPostInput;
   comments?: CommentCreateManyWithoutPostInput;
 }
 
 export interface PostUpdateInput {
-  user?: UserUpdateOneRequiredWithoutPostsInput;
   location?: String;
   caption?: String;
+  user?: UserUpdateOneWithoutPostsInput;
   files?: FileUpdateManyWithoutPostInput;
   likes?: LikeUpdateManyWithoutPostInput;
   comments?: CommentUpdateManyWithoutPostInput;
@@ -2082,8 +2094,8 @@ export interface UserUpdateInput {
   firstName?: String;
   lastName?: String;
   bio?: String;
-  followers?: UserUpdateManyWithoutFollowingInput;
   following?: UserUpdateManyWithoutFollowersInput;
+  followers?: UserUpdateManyWithoutFollowingInput;
   posts?: PostUpdateManyWithoutUserInput;
   likes?: LikeUpdateManyWithoutUserInput;
   comments?: CommentUpdateManyWithoutUserInput;
@@ -2205,7 +2217,7 @@ export interface CommentSubscription
 export interface User {
   id: ID_Output;
   userName: String;
-  email?: String;
+  email: String;
   firstName?: String;
   lastName?: String;
   bio?: String;
@@ -2219,7 +2231,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   firstName: () => Promise<String>;
   lastName: () => Promise<String>;
   bio: () => Promise<String>;
-  followers: <T = FragmentableArray<User>>(
+  following: <T = FragmentableArray<User>>(
     args?: {
       where?: UserWhereInput;
       orderBy?: UserOrderByInput;
@@ -2230,7 +2242,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
       last?: Int;
     }
   ) => T;
-  following: <T = FragmentableArray<User>>(
+  followers: <T = FragmentableArray<User>>(
     args?: {
       where?: UserWhereInput;
       orderBy?: UserOrderByInput;
@@ -2297,7 +2309,7 @@ export interface UserSubscription
   firstName: () => Promise<AsyncIterator<String>>;
   lastName: () => Promise<AsyncIterator<String>>;
   bio: () => Promise<AsyncIterator<String>>;
-  followers: <T = Promise<AsyncIterator<UserSubscription>>>(
+  following: <T = Promise<AsyncIterator<UserSubscription>>>(
     args?: {
       where?: UserWhereInput;
       orderBy?: UserOrderByInput;
@@ -2308,7 +2320,7 @@ export interface UserSubscription
       last?: Int;
     }
   ) => T;
-  following: <T = Promise<AsyncIterator<UserSubscription>>>(
+  followers: <T = Promise<AsyncIterator<UserSubscription>>>(
     args?: {
       where?: UserWhereInput;
       orderBy?: UserOrderByInput;
@@ -2374,9 +2386,9 @@ export interface Post {
 
 export interface PostPromise extends Promise<Post>, Fragmentable {
   id: () => Promise<ID_Output>;
-  user: <T = UserPromise>() => T;
   location: () => Promise<String>;
   caption: () => Promise<String>;
+  user: <T = UserPromise>() => T;
   files: <T = FragmentableArray<File>>(
     args?: {
       where?: FileWhereInput;
@@ -2416,9 +2428,9 @@ export interface PostSubscription
   extends Promise<AsyncIterator<Post>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  user: <T = UserSubscription>() => T;
   location: () => Promise<AsyncIterator<String>>;
   caption: () => Promise<AsyncIterator<String>>;
+  user: <T = UserSubscription>() => T;
   files: <T = Promise<AsyncIterator<FileSubscription>>>(
     args?: {
       where?: FileWhereInput;
@@ -3278,7 +3290,7 @@ export interface UserSubscriptionPayloadSubscription
 export interface UserPreviousValues {
   id: ID_Output;
   userName: String;
-  email?: String;
+  email: String;
   firstName?: String;
   lastName?: String;
   bio?: String;

@@ -3,12 +3,13 @@ import logger from "morgan";
 import schema from "./shcema";
 import "./passport";
 import { authenticateJwt } from "./passport";
+import { isAuthenticated } from "./middlewares";
 /**
  * GraphQLServer 생성
  */
 const server = new GraphQLServer({
   schema,
-  context: ({ request }) => ({ request })
+  context: ({ request }) => ({ request, isAuthenticated })
 });
 
 /**
