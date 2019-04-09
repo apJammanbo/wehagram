@@ -1,6 +1,8 @@
-# wehagram server
+# wehagram
 
-## User Stories
+## whagram server
+
+### User Stories
 
 - [x] Create account
 - [x] Request Secret
@@ -23,3 +25,5 @@
 - [x] See room
 - [x] Receive Message
 - [x] Receive Message (RealTime)
+
+## whagram frontend
