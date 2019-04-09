@@ -358,6 +358,8 @@ export interface ClientConstructor<T> {
 export type UserOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "avatar_ASC"
+  | "avatar_DESC"
   | "userName_ASC"
   | "userName_DESC"
   | "email_ASC"
@@ -454,6 +456,20 @@ export interface UserWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  avatar?: String;
+  avatar_not?: String;
+  avatar_in?: String[] | String;
+  avatar_not_in?: String[] | String;
+  avatar_lt?: String;
+  avatar_lte?: String;
+  avatar_gt?: String;
+  avatar_gte?: String;
+  avatar_contains?: String;
+  avatar_not_contains?: String;
+  avatar_starts_with?: String;
+  avatar_not_starts_with?: String;
+  avatar_ends_with?: String;
+  avatar_not_ends_with?: String;
   userName?: String;
   userName_not?: String;
   userName_in?: String[] | String;
@@ -813,6 +829,7 @@ export interface UserCreateOneWithoutCommentsInput {
 }
 
 export interface UserCreateWithoutCommentsInput {
+  avatar?: String;
   userName: String;
   email: String;
   firstName?: String;
@@ -832,6 +849,7 @@ export interface UserCreateManyWithoutFollowersInput {
 }
 
 export interface UserCreateWithoutFollowersInput {
+  avatar?: String;
   userName: String;
   email: String;
   firstName?: String;
@@ -882,6 +900,7 @@ export interface UserCreateOneWithoutLikesInput {
 }
 
 export interface UserCreateWithoutLikesInput {
+  avatar?: String;
   userName: String;
   email: String;
   firstName?: String;
@@ -901,6 +920,7 @@ export interface UserCreateManyWithoutFollowingInput {
 }
 
 export interface UserCreateWithoutFollowingInput {
+  avatar?: String;
   userName: String;
   email: String;
   firstName?: String;
@@ -942,6 +962,7 @@ export interface UserCreateOneWithoutPostsInput {
 }
 
 export interface UserCreateWithoutPostsInput {
+  avatar?: String;
   userName: String;
   email: String;
   firstName?: String;
@@ -1006,6 +1027,7 @@ export interface UserCreateOneInput {
 }
 
 export interface UserCreateInput {
+  avatar?: String;
   userName: String;
   email: String;
   firstName?: String;
@@ -1046,6 +1068,7 @@ export interface UserUpdateOneWithoutCommentsInput {
 }
 
 export interface UserUpdateWithoutCommentsDataInput {
+  avatar?: String;
   userName?: String;
   email?: String;
   firstName?: String;
@@ -1083,6 +1106,7 @@ export interface UserUpdateWithWhereUniqueWithoutFollowersInput {
 }
 
 export interface UserUpdateWithoutFollowersDataInput {
+  avatar?: String;
   userName?: String;
   email?: String;
   firstName?: String;
@@ -1237,6 +1261,7 @@ export interface UserUpdateOneWithoutLikesInput {
 }
 
 export interface UserUpdateWithoutLikesDataInput {
+  avatar?: String;
   userName?: String;
   email?: String;
   firstName?: String;
@@ -1274,6 +1299,7 @@ export interface UserUpdateWithWhereUniqueWithoutFollowingInput {
 }
 
 export interface UserUpdateWithoutFollowingDataInput {
+  avatar?: String;
   userName?: String;
   email?: String;
   firstName?: String;
@@ -1338,6 +1364,7 @@ export interface UserUpdateOneWithoutPostsInput {
 }
 
 export interface UserUpdateWithoutPostsDataInput {
+  avatar?: String;
   userName?: String;
   email?: String;
   firstName?: String;
@@ -1513,6 +1540,7 @@ export interface UserUpdateOneRequiredInput {
 }
 
 export interface UserUpdateDataInput {
+  avatar?: String;
   userName?: String;
   email?: String;
   firstName?: String;
@@ -1698,6 +1726,20 @@ export interface UserScalarWhereInput {
   id_not_starts_with?: ID_Input;
   id_ends_with?: ID_Input;
   id_not_ends_with?: ID_Input;
+  avatar?: String;
+  avatar_not?: String;
+  avatar_in?: String[] | String;
+  avatar_not_in?: String[] | String;
+  avatar_lt?: String;
+  avatar_lte?: String;
+  avatar_gt?: String;
+  avatar_gte?: String;
+  avatar_contains?: String;
+  avatar_not_contains?: String;
+  avatar_starts_with?: String;
+  avatar_not_starts_with?: String;
+  avatar_ends_with?: String;
+  avatar_not_ends_with?: String;
   userName?: String;
   userName_not?: String;
   userName_in?: String[] | String;
@@ -1793,6 +1835,7 @@ export interface UserUpdateManyWithWhereNestedInput {
 }
 
 export interface UserUpdateManyDataInput {
+  avatar?: String;
   userName?: String;
   email?: String;
   firstName?: String;
@@ -1972,6 +2015,7 @@ export interface UserCreateManyWithoutRoomsInput {
 }
 
 export interface UserCreateWithoutRoomsInput {
+  avatar?: String;
   userName: String;
   email: String;
   firstName?: String;
@@ -2027,6 +2071,7 @@ export interface UserUpdateWithWhereUniqueWithoutRoomsInput {
 }
 
 export interface UserUpdateWithoutRoomsDataInput {
+  avatar?: String;
   userName?: String;
   email?: String;
   firstName?: String;
@@ -2089,6 +2134,7 @@ export interface RoomUpdateInput {
 }
 
 export interface UserUpdateInput {
+  avatar?: String;
   userName?: String;
   email?: String;
   firstName?: String;
@@ -2104,6 +2150,7 @@ export interface UserUpdateInput {
 }
 
 export interface UserUpdateManyMutationInput {
+  avatar?: String;
   userName?: String;
   email?: String;
   firstName?: String;
@@ -2216,6 +2263,7 @@ export interface CommentSubscription
 
 export interface User {
   id: ID_Output;
+  avatar?: String;
   userName: String;
   email: String;
   firstName?: String;
@@ -2226,6 +2274,7 @@ export interface User {
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
+  avatar: () => Promise<String>;
   userName: () => Promise<String>;
   email: () => Promise<String>;
   firstName: () => Promise<String>;
@@ -2304,6 +2353,7 @@ export interface UserSubscription
   extends Promise<AsyncIterator<User>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  avatar: () => Promise<AsyncIterator<String>>;
   userName: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   firstName: () => Promise<AsyncIterator<String>>;
@@ -3289,6 +3339,7 @@ export interface UserSubscriptionPayloadSubscription
 
 export interface UserPreviousValues {
   id: ID_Output;
+  avatar?: String;
   userName: String;
   email: String;
   firstName?: String;
@@ -3301,6 +3352,7 @@ export interface UserPreviousValuesPromise
   extends Promise<UserPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  avatar: () => Promise<String>;
   userName: () => Promise<String>;
   email: () => Promise<String>;
   firstName: () => Promise<String>;
@@ -3313,6 +3365,7 @@ export interface UserPreviousValuesSubscription
   extends Promise<AsyncIterator<UserPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  avatar: () => Promise<AsyncIterator<String>>;
   userName: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
   firstName: () => Promise<AsyncIterator<String>>;

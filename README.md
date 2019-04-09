@@ -18,8 +18,8 @@
 - [x] Upload photo
 - [x] Edit the photo (Delete)
 - [x] See the feed
-- [ ] Send private Message
-- [ ] Receive Message
-- [ ] See rooms
-- [ ] See room
-- [ ] Receive Message (RealTime)
+- [x] Send private Message
+- [x] See rooms
+- [x] See room
+- [x] Receive Message
+- [x] Receive Message (RealTime)
