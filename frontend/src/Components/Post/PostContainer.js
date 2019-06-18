@@ -19,6 +19,7 @@ const PostContainer = ({
   const [isLikedS, setIsLiked] = useState(isLiked);
   const [likeCountS, setLikeCount] = useState(likeCount);
   const [currentItem, setCurrentItem] = useState(0);
+  const [selfComments, setSelfComments] = useState([]);
   const comment = useInput("");
 
   const toggleLikeMutation = useMutation(TOGGLE_LIKE, {
@@ -29,15 +30,17 @@ const PostContainer = ({
     variables: { postId: id, text: comment.value }
   });
 
-  const slide = () => {
-    const total = files.length;
-    if (currentItem === total - 1) {
-      setTimeout(() => setCurrentItem(0), 3000);
-    } else {
-      setTimeout(() => setCurrentItem(currentItem + 1), 3000);
-    }
-  };
-  useEffect(slide, [currentItem]);
+  useEffect(
+    () => {
+      const total = files.length;
+      const nextIndex = currentItem === total - 1 ? 0 : currentItem + 1;
+      const timer = setTimeout(() => setCurrentItem(nextIndex), 3000);
+      return () => {
+        clearTimeout(timer);
+      };
+    },
+    [currentItem]
+  );
 
   const toggleLike = async () => {
     if (isLikedS) {
@@ -56,12 +59,19 @@ const PostContainer = ({
     }
   };
 
-  const onKeyDown = async event => {
-    if (event.keyCode === 13) {
+  const onKeyPress = async event => {
+    const { which } = event;
+    if (which === 13) {
       event.preventDefault();
       if (comment.value) {
-        addCommentMutation();
+        // addCommentMutation();
         comment.setValue("");
+        try {
+          const {
+            data: { addComment }
+          } = await addCommentMutation();
+          setSelfComments([...selfComments, addComment]);
+        } catch {}
       }
     }
   };
@@ -81,7 +91,8 @@ const PostContainer = ({
       setLikeCount={setLikeCount}
       currentItem={currentItem}
       toggleLike={toggleLike}
-      onKeyDown={onKeyDown}
+      onKeyPress={onKeyPress}
+      selfComments={selfComments}
     />
   );
 };

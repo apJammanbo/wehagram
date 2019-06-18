@@ -110,8 +110,9 @@ export default ({
   newComment,
   currentItem,
   toggleLike,
-  onKeyDown,
-  comments
+  onKeyPress,
+  comments,
+  selfComments
 }) => (
   <Post>
     <Header>
@@ -144,11 +145,17 @@ export default ({
               {comment.text}
             </Comment>
           ))}
+          {selfComments.map(comment => (
+            <Comment key={comment.id}>
+              <FatText text={comment.user.userName} />
+              {comment.text}
+            </Comment>
+          ))}
         </Comments>
       )}
       <TimeStamp>{createdAt}</TimeStamp>
       <TextArea
-        onKeyDown={onKeyDown}
+        onKeyPress={onKeyPress}
         placeholder="Add a comment..."
         value={newComment.value}
         onChange={newComment.onChange}
