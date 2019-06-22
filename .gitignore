@@ -450,3 +450,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/node,macos,windows,intellij,virtualenv,reactnative,visualstudiocode
+
+# 빌드 폴더 제외
+server/build
